@@ -11,7 +11,7 @@ import setuptools
 #     long_description = fh.read()
 
 setuptools.setup(
-    name = 'image_processing',
+    name = 'image_processing_new',
     version = '0.0.0',
     author = 'Bugra Özdemir',
     author_email = 'bugraa.ozdemir@gmail.com',
@@ -21,6 +21,6 @@ setuptools.setup(
     url = 'https://github.com/bugraoezdemir/image_processing',
     # license = 'MIT',
     # packages = ['wrappers', 'visualisation', 'utils', 'transforms'],
-    # packages = ['image_processing']
+    packages = ['image_processing']
     # install_requires = ['requests'],
     )
