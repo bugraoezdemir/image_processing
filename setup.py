@@ -22,5 +22,5 @@ setuptools.setup(
     ,
     # license = 'MIT',
     packages = setuptools.find_packages()
-    install_requires = ["scikit-image"],
+    install_requires = ["scikit-image",],
     )
