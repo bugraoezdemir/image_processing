@@ -16,7 +16,7 @@ def parse_requirements(filename):
         requires = [line.strip() for line in fid.readlines() if line]
     return requires
 
-requirements = parse_requirements(requirements.txt)
+requirements = parse_requirements('requirements.txt')
 
 setuptools.setup(
     name = 'image_processing',
