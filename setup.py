@@ -10,6 +10,14 @@ import setuptools
 # with open("README.md", "r", encoding="utf-8") as fh:
 #     long_description = fh.read()
 
+
+def parse_requirements(filename):
+    with open(filename, encoding='utf-8') as fid:
+        requires = [line.strip() for line in fid.readlines() if line]
+    return requires
+
+requirements = parse_requirements(requirements.txt)
+
 setuptools.setup(
     name = 'image_processing',
     version = '0.0.0',
@@ -21,6 +29,6 @@ setuptools.setup(
     url = 'https://github.com/bugraoezdemir/image_processing'     
     ,
     # license = 'MIT',
-    packages = setuptools.find_packages()
-    install_requires = ['scikit-image>=0.16',],
+    packages = setuptools.find_packages(exclude = ['wrappers'])
+    install_requires = requirements
     )
