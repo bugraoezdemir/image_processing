@@ -34,6 +34,6 @@ setuptools.setup(
     include_package_data = True,    
     url = 'https://github.com/bugraoezdemir/image_processing',
     # license = 'MIT',
-    packages = setuptools.find_packages(exclude = ['wrappers',]),
+    packages = setuptools.find_packages(exclude = ["wrappers",]),
     install_requires = requirements
     )
