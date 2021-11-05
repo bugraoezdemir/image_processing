@@ -17,6 +17,7 @@ def parse_requirements(filename):
     return requires
 
 requirements = parse_requirements('requirements.txt')
+excluded = parse_requirements('exclusions.txt')
 
 setuptools.setup(
     name = 'image_processing',
@@ -28,6 +29,6 @@ setuptools.setup(
     long_description_content_type = "text/markdown",
     url = 'https://github.com/bugraoezdemir/image_processing',
     # license = 'MIT',
-    packages = setuptools.find_packages(exclude = ['wrappers']),
+    packages = setuptools.find_packages(exclude = excluded),
     install_requires = requirements
     )
