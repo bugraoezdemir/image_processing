@@ -11,7 +11,7 @@ import setuptools
 #     long_description = fh.read()
 
 setuptools.setup(
-    name = 'image_processing_new',
+    name = 'image_processing',
     version = '0.0.0',
     author = 'Bugra Özdemir',
     author_email = 'bugraa.ozdemir@gmail.com',
