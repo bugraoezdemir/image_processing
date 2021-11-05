@@ -16,6 +16,10 @@ def parse_requirements(filename):
         requires = [line.strip() for line in fid.readlines() if line]
     return requires
 
+def readme():
+   with open('README.txt') as f:
+   return f.read()
+
 requirements = parse_requirements('requirements.txt')
 excluded = parse_requirements('exclusions.txt')
 
@@ -25,11 +29,11 @@ setuptools.setup(
     author = 'Bugra Özdemir',
     author_email = 'bugraa.ozdemir@gmail.com',
     description = 'Image processing tools.',
-    long_description = 'Tools for the processing of 3D microscopy images.',
+    long_description = readme(),
     long_description_content_type = "text/markdown",
     include_package_data = True,    
     url = 'https://github.com/bugraoezdemir/image_processing',
     # license = 'MIT',
-    packages = setuptools.find_packages(exclude = excluded),
+    packages = setuptools.find_packages(exclude = ["wrappers"]),
     install_requires = requirements
     )
