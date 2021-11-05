@@ -21,6 +21,6 @@ setuptools.setup(
     url = 'https://github.com/bugraoezdemir/image_processing',
     # license = 'MIT',
     # packages = ['wrappers', 'visualisation', 'utils', 'transforms'],
-    packages = ['tools, vis,']
+    packages = ['tools', 'vis,']
     # install_requires = ['requests'],
     )
