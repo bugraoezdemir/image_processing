@@ -5,5 +5,5 @@ do not change the voxel positions.
 On the other hand, geometrical transforms modify the voxel positions, while trying to
 retain the voxel values. 
 
-Examples of photometrical transforms include statistical filtering such as mean and median 
-filtering, whereas examples of geometrical transforms include rotations, projections, etc.
+Examples of photometrical transforms include filters such as Gaussian and Laplacian 
+filters, whereas examples of geometrical transforms include rotations, projections, etc.
