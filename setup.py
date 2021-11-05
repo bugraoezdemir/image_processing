@@ -18,7 +18,7 @@ def parse_requirements(filename):
 
 def readme():
    with open('README.txt') as f:
-   return f.read()
+   	return f.read()
 
 requirements = parse_requirements('requirements.txt')
 excluded = parse_requirements('exclusions.txt')
