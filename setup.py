@@ -18,9 +18,9 @@ setuptools.setup(
     description = 'Image processing tools.',
     long_description = 'Tools for the processing of 3D microscopy images.',
     long_description_content_type = "text/markdown",
-    url = 'https://github.com/bugraoezdemir/image_processing',
+    url = 'https://github.com/bugraoezdemir/image_processing'     
+    ,
     # license = 'MIT',
-    # packages = ['wrappers', 'visualisation', 'utils', 'transforms'],
-    packages = setuptools.find_packages()
+    packages = setuptools.find_packages(
     # install_requires = ['requests'],
     )
