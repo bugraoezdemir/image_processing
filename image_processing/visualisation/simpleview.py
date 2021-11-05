@@ -5,8 +5,10 @@ Created on Thu Aug 22 09:29:10 2019
 @author: ozdemir
 """
 
-""" Here I implemented a simple image viewer which uses matplotlib's imshow to view 2D images inline. 
-    If 3D images are passed as input, they are also plotted in a slicewise fashion. """
+""" Here I implemented a simple image viewer which uses matplotlib's imshow to view 
+    2D images inline. 
+    
+    If 3D images are passed as input, they are plotted slice by slice. """
 
 
 import matplotlib.pyplot as plt
@@ -16,7 +18,7 @@ import matplotlib.pyplot as plt
 def view2d(*imgs, slice_no = 0):
     if len(imgs) == 1:
         plt.figure()
-        plt.imshow(imgs[0], interpolation='none')
+        plt.imshow(imgs[0], interpolation = 'none')
         text = 'image: {}, slice: {}'.format(0, slice_no)
         plt.text(5, -4, text)
         return()
