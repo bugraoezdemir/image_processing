@@ -1,4 +1,6 @@
-Here are some tools for the processing of 3D microscopy images.
+A toolbox for the processing of 3D microscopy images.
+Included are tools for feature enhancement, global and local thresholding,
+projections, rotations and etc.  
 
 
 Use the following command for installing the package:
