@@ -50,7 +50,7 @@ def get_rotation_matrix(theta, axis):
 
 def get_rotation_matrices(angles, axis):
     """ This function calculates multiple 3D rotation matrices that correspond to 
-        mmultiple different angles provided by the 'angles' parameter. Note that 
+        multiple different angles provided by the 'angles' parameter. Note that 
         the axis here must be one of the three main axes. It cannot be an arbitrary vector. 
         
         Parameters:
@@ -84,7 +84,7 @@ def get_rotation_matrices(angles, axis):
 
 
 def angleaxis2rotmat (theta, axis):
-    ''' 3D Rotation matrix of angle 'theta' around 'vector'. This function is better than
+    ''' 3D Rotation matrix of angle 'theta' around 'axis'. This function is better than
         the function 'get_rotation_matrix' since this one can calculate rotations around
         any arbitrary axis specified as 'axis'
 
