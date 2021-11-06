@@ -1,6 +1,6 @@
-Here are tools that apply geometrical or photometrical transforms to 
-numpy arrays. Photometrical transforms modify the voxel values 'in-place', i.e., they
-do not change the voxel positions. 
+Here are tools that apply geometrical or photometrical transforms to microscopic images. 
+Photometrical transforms modify the voxel values 'in-place', i.e., they do not change the 
+voxel positions. 
 
 On the other hand, geometrical transforms modify the voxel positions, while trying to
 retain the voxel values. 
