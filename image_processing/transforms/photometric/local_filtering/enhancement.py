@@ -12,9 +12,16 @@ from scipy.signal import fftconvolve
 # local imports
 from . import statistical as st
 from ....utils import convenience as cnv
-from ....wrappers.itk_filters import *
 from . import derivatives as der
 from ..thresholding import local_threshold as lt
+try:
+    from ....wrappers import __init__
+    wrappers_exists = True
+except:
+    wrappers_exists = False
+
+if wrappers_exists:
+    from ....wrappers.itk_filters import laplacian_gaussian, enhance_vesselness, enhance_vesselness_multiscale, enhance_vesselness_2D
 
 def generate_gaussian_kernel(kernel_shape = (20, 20, 20), kernel_weights = (1, 1, 1)):
     """ Creates Gaussian kernel with ndimensional shapes. This is a robust function, which sits the
