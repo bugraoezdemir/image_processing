@@ -21,7 +21,6 @@ def readme():
    	return f.read()
 
 requirements = parse_requirements('requirements.txt')
-excluded = parse_requirements('exclusions.txt')
 
 setuptools.setup(
     name = 'image_processing',
