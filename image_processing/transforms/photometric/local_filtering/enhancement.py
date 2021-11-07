@@ -141,7 +141,7 @@ def iterative_unsharp_mask (img, k = 1.2, iterations = 1, window = 3, blur_func 
 
 ################################################### Blobness filters ######################################################
 ###########################################################################################################################
-def doh_filter (img, sig = 1, min_contrast = 0.01, grad_type = 'Numpy', scale = False):
+def doh_filter (img, sig = 1, min_contrast = 0.01, grad_type = 'numpy', scale = False):
     """ Detects blobs based on determinants of hessian.
         
         Parameters:
@@ -170,7 +170,7 @@ def doh_filter (img, sig = 1, min_contrast = 0.01, grad_type = 'Numpy', scale = 
         sig = [sig]
     cube = []
     for i in sig:
-        blobness = der.determinant_hessian_matrix(img, sig, scale, grad_type)
+        blobness = der.determinant_hessian_matrix(img, i, scale, grad_type)
         cube.append(blobness)
     res = np.max(cube, axis = 0)
     cmask = lt._generic_contrast_mask(img, 5, min_contrast)    
