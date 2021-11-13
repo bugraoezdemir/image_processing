@@ -260,7 +260,7 @@ def eigvals_structure_tensor(img, fp = 1, scale = False, gradient_type='numpy', 
             A 4D numpy array, where the three 3D structure tensors are concatenated along the first axis. 
         """
     cnv.cp_3d(img)
-    matrices = generate_structure_tensor(img, fp, gradient_type, pregradient_sig)
+    matrices = generate_structure_tensor(img, fp, gradient_type, weight_func, pregradient_sig)
     if scale:
         if np.isscalar(fp):
             l = fp
