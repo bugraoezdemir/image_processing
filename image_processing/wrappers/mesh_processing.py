@@ -25,7 +25,7 @@ import os
 
 
 ### local imports
-from local_pkgs.utils import convenience as cnv
+from image_processing.utils import convenience as cnv
 
 
 # embedWindow(backend=False)
@@ -254,6 +254,28 @@ class surfdata(pv.PolyData):
         self.merge_with(tria)
         self.fixed = True
         return self
+    def clip_with_scalar(self, value, invert = False):
+        clipped = self.clip_scalar(value = value, invert = invert)
+        self.merge_with(clipped)
+        return self
+    def remove_small_components(self, size):        
+        con = self.connectivity()
+        pts = con.points
+        scalars = con.point_data['RegionId']
+        stack = np.hstack((scalars.reshape(-1, 1), pts))
+        df = pd.DataFrame(stack, columns = ['region', 'depth', 'row', 'col'])
+        grouped = df.groupby('region').transform('count')
+        mask = grouped.depth < size
+        inds = mask.index[mask].to_numpy()
+        final = con.remove_points(inds)[0]
+        self.merge_with(final)
+    def rsc(self, size):        
+        self.remove_small_components(size)
+        return self        
+    
+    
+    
+        
     
 class topograph(surfdata):
     def __init__(self):

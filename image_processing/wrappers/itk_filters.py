@@ -189,7 +189,7 @@ def canny(img, variance, lower, higher, s=0):
 #####################################################################################################################################
 
 def enhance_vesselness(imgset, sig = 1, alpha1 = 0.5, alpha2 = 2):
-    itkimg = itk.GetImageFromArray(imgset)
+    itkimg = itk.GetImageFromArray(imgset.astype(np.float32))
     input_image = itkimg
     hessian_image = itk.hessian_recursive_gaussian_image_filter(input_image, sigma = sig)
     vesselness_filter = itk.Hessian3DToVesselnessMeasureImageFilter[itk.ctype('float')].New()
