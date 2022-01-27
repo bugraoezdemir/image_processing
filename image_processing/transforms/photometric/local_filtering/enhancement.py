@@ -49,13 +49,25 @@ def generate_gaussian_kernel(kernel_shape = (20, 20, 20), kernel_weights = (1, 1
     # g = a * exp(-(x - b) ** 2 / c ** 2), Here a is curve height. b is curve peak's coordinate. c is curve width. 
     nh = np.array(kernel_shape)
     k = np.array(kernel_weights) 
-    dimensions = [np.exp(-(np.linspace(-nh[i] // 2, nh[i] // 2, nh[i]) / k[i]) ** 2) for i in range(len(kernel_shape))]
+    func = lambda i, item: item[i] // 2 + 1 if item[i] % 2 > 0 else item[i] // 2 
+    dimensions = [np.exp(-(np.linspace(-nh[i] // 2, func(i, nh), nh[i]) / k[i]) ** 2) for i in range(len(kernel_shape))]
+    # dimensions = [np.exp(-(np.linspace(-nh[i] // 2, nh[i] // 2 + 1, nh[i]) / k[i]) ** 2) for i in range(len(kernel_shape))]
     # g = np.meshgrid(row / np.trapz(row), depth / np.trapz(depth), col / np.trapz(col))
     g = np.meshgrid(* dimensions, indexing = 'ij')
     kernel = np.prod(g, axis = 0)
     return kernel / kernel.sum()
 
-def rlu_deconvolve(image, psf, iterations = 5, kernel_type = 'gaussian'):
+def generate_gaussian_cylinder(kernel_shape = (20, 20, 20), kernel_weights = (1, 1, 1)):
+    """ Returns a cylindrical gaussian kernel, which is aligned along the axis (0, 0, 1). """
+    nh = np.array(kernel_shape)
+    k = np.array(kernel_weights)     
+    func = lambda i, item: item[i] // 2 + 1 if item[i] % 2 > 0 else item[i] // 2 
+    dimensions = [np.exp(-(np.linspace(-nh[i] // 2, func(i, nh), nh[i]) / k[i]) ** 2) for i in range(len(kernel_shape))]
+    g = np.meshgrid(* dimensions, indexing = 'ij')
+    kernel = np.prod(g[:-1], axis = 0)
+    return kernel / kernel.sum()
+
+def rlu_deconvolve(image, psf, iterations = 5, kernel_type = 'gaussian', verbose = False):
     # a good psf for my images: generate_gaussian_kernel((10, 7, 7), (3, 2, 2)) 
     """ Skimage's Richardson Lucy deconvolution with slight modifications. 
     
@@ -95,12 +107,14 @@ def rlu_deconvolve(image, psf, iterations = 5, kernel_type = 'gaussian'):
     im_deconv = np.full(image.shape, 0.5)
     psf_mirror = psf[::-1, ::-1, ::-1]
     conv_im = fftconvolve(im_deconv, psf_mirror, mode = 'same') 
-    for _ in range(iterations):
+    for i in range(iterations):
         conv_im = st._block_zeroes(conv_im)
         relative_blur = image / conv_im 
         c = fftconvolve(relative_blur, psf, mode = 'same') 
         im_deconv *= c
         conv_im = fftconvolve(im_deconv, psf_mirror, mode = 'same') 
+        if verbose:
+            print('iteration: {}'.format(i))
     return im_deconv
 
 def iterative_unsharp_mask (img, k = 1.2, iterations = 1, window = 3, blur_func = ndi.gaussian_filter):
@@ -258,7 +272,49 @@ def jerman_blobness(img, sig = 1, tau = 0.5, min_contrast = 0.01, grad_type = 'n
         cube.append(blobness)
     res = np.max(cube, axis = 0)
     cmask = lt._generic_contrast_mask(img, 5, min_contrast)    
-    return res * (1 - cmask)  
+    return res * (1 - cmask) 
+
+    
+
+def create_hollow_selems(sizes):
+    sizes = np.asarray(sizes)
+    sizes = np.sort(sizes)
+    boxes = []
+    for size in sizes:
+        ball = cnv.eselem(size, size, size) > 0
+        boxes.append(ball)
+    padded = []
+    lengths = 2 * sizes + 1
+    padders = np.diff(lengths)
+    padders //= 2
+    for i, (padder, box) in enumerate(zip(padders, boxes[1:])):
+        pbox = boxes[i]
+        pbox = np.pad(pbox, padder)
+        padded.append(pbox)
+    padded_full = padded.copy()
+    final = [boxes[0]] 
+    for box, pdd in zip(boxes[1:], padded_full):
+        box[pdd] = 0
+        final.append(box)
+    return final   
+
+def maxdiff_blobness(im, radii = (1, 2, 3, 4), pw = None, sig = None):
+    selems = create_hollow_selems(radii)
+    imcube = np.stack([ndi.maximum_filter(im, footprint = item) for item in selems], axis = 0)
+    if sig is None:
+        maxi = imcube[0].copy()
+    else:
+        maxi = ndi.gaussian_filter(im, sig)
+    # maxi = cnv.rescale(maxi)
+    if pw is None:
+        maxdiff = np.max(maxi - imcube[1:], axis = 0)
+    else:
+        normaliser = np.power(maxi, pw)
+        maxdiff = np.max(cnv.div_nonzero(maxi- imcube[1:], normaliser), axis = 0)
+    maxdiff[maxdiff < 0] = 0
+    maxdiff[im < im.mean()] = 0
+    return maxdiff
+
 ###########################################################################################################################
 
 
@@ -518,3 +574,6 @@ def zhang_vesselness(img, sig = 1, tau = 0.5, min_contrast = 0.01, grad_type = '
     return res * (1 - cmask)
 
 ###########################################################################################################################
+
+
+
