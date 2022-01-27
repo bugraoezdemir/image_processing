@@ -13,3 +13,4 @@ because of the high number of dependencies. The 'wrappers' package will be
 included in a separate installation recipe later.   
 
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/bugraoezdemir/image_processing/HEAD)
