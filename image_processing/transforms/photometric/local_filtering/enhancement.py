@@ -15,7 +15,7 @@ from ....utils import convenience as cnv
 from . import derivatives as der
 from ..thresholding import local_threshold as lt
 try:
-    from ....wrappers import __init__
+    from ....wrappers import __init__1 ### this is a checkpoint for the binder implementation. Modify later when the wrappers package has been handled.
     wrappers_exists = True
 except:
     wrappers_exists = False
