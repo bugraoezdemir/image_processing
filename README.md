@@ -7,7 +7,7 @@ geometrical transformations and etc.
 
 Use the following command for installing the package:
 
-pip install git+https://github.com/bugraoezdemir/image\_processing
+pip install git+https://github.com/bugraoezdemir/image_processing
 
 
 Note that the pip installation deliberately excludes the 'wrappers' sub-package
