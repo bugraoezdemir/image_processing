@@ -273,4 +273,4 @@ dependencies:
   - zstd=1.5.2=h6255e5f_0
   - pip:
     - image-processing==0.0.0
-prefix: C:\Users\oezdemir\Anaconda3\envs\newenv
+prefix: C:\Users\oezdemir\Anaconda3\envs\test_env
