@@ -16,3 +16,4 @@ dependencies:
     - trackpy
     - requests
     - pillow
+    - image-processing
