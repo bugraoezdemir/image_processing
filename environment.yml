@@ -3,12 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - pip
-  - scipy
-  - numpy
-  - matplotlib
   - pandas
-  - scikit-image
-  - scikit-learn
   - ipyvolume
   - nodejs
   - pip:
