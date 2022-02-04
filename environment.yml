@@ -10,4 +10,5 @@ dependencies:
   - pip:
     - image-processing
     - pillow
+    - napari[all]
 
