@@ -1,6 +1,0 @@
-set -ex
-
-pip install .
-
-jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyter-threejs js --no-build
-jupyter lab build
