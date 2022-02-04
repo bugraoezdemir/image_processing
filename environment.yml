@@ -11,9 +11,9 @@ dependencies:
   - scikit-learn
   - jupyter
   - ipywidgets
+  - itkwidgets
+  - ipyvolume
   - pip:
-    - napari
-    - trackpy
     - requests
     - pillow
     - image-processing
