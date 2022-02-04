@@ -3,11 +3,12 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - scikit-image>=0.16
-  - pandas>=1.3.0
-  - matplotlib>=3.4.1
-  - napari >= 0.4.0
+  - pip
+  - scikit-image
+  - pandas
+  - matplotlib
+  - napari 
   - pip:
-    - image-processing==0.0.0
-    - pillow==9.0.1
+    - image-processing
+    - pillow
 
