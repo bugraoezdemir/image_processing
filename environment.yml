@@ -9,12 +9,20 @@ dependencies:
   - pandas
   - scikit-image
   - scikit-learn
-  - jupyter
-  - ipywidgets
-  - itkwidgets
   - ipyvolume
-  - jupyter_contrib_nbextensions
+  - nodejs
   - pip:
-    - requests
-    - pillow
-    - image-processing
+     - traittypes
+     - traitlets
+     - ipywidgets>=7.4
+     - Pillow
+     - scipy
+     - numpy
+     - scikit-image>=0.13
+     - requests
+     - ipywebrtc>=0.4
+     - pythreejs>=1.0
+     - matplotlib
+     - jupyterlab>=0.34
+     - notebook>=5.3
+     - image-processing
