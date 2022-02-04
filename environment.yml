@@ -1,18 +1,18 @@
 name: test_env
 channels:
   - conda-forge
-  - defaults
 dependencies:
   - pip
-  - websockify
-  - jupyter-server-proxy>=1.4
-  - requests
-  - scikit-image
-  - pandas
+  - scipy
+  - numpy
   - matplotlib
+  - pandas
+  - scikit-image
+  - scikit-learn
+  - jupyter
+  - ipywidgets
   - pip:
-    - jupyter-desktop-server
-    - image-processing
+    - napari
+    - trackpy
+    - requests
     - pillow
-    - napari[all]
-
