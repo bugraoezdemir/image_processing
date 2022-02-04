@@ -4,10 +4,14 @@ channels:
   - defaults
 dependencies:
   - pip
+  - websockify
+  - jupyter-server-proxy>=1.4
+  - requests
   - scikit-image
   - pandas
   - matplotlib
   - pip:
+    - jupyter-desktop-server
     - image-processing
     - pillow
     - napari[all]
